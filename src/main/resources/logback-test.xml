@@ -1,5 +1,4 @@
 <configuration debug="true" scan="true" scanPeriod="10 seconds">
-
     <!-- 作用等同于configuration标签中的debug="true" -->
     <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
 
