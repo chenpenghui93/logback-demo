@@ -1,19 +1,16 @@
-<configuration>
+<configuration debug="true" scan="true" scanPeriod="10 seconds">
+    <!-- 作用等同于configuration标签中的debug="true" -->
+    <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoders are assigned the type
-             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <!-- encoders are  by default assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="com.cph" level="INFO"/>
-
-    <!-- Strictly speaking, the level attribute is not necessary since -->
-    <!-- the level of the root level is set to DEBUG by default.       -->
-    <root level="DEBUG">
+    <root level="debug">
         <appender-ref ref="STDOUT"/>
     </root>
-
 </configuration>
