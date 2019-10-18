@@ -2,6 +2,8 @@
 <!-- configuration标签为根节点 -->
 <!-- debug="true"表示输出logback内部状态，用于排查logback自身问题 -->
 <configuration debug="true">
+    <!-- 作用等同于configuration标签中的debug="true" -->
+    <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
 
     <!-- 设置应用名用于区分不同应用 -->
     <contextName>myAppName</contextName>
@@ -21,6 +23,33 @@
     <!-- 输出日志至文件myApp.log -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${USER_NAME}/myApp.log</file>
+
+        <!-- TimeBasedRollingPolicy -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history capped at 3GB total size -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+
+        <!-- Size and time based rolling policy -->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+        <!--&lt;!&ndash; rollover daily &ndash;&gt;-->
+        <!--<fileNamePattern>mylog-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>-->
+        <!--&lt;!&ndash; each file should be at most 100MB, keep 60 days worth of history, but at most 20GB &ndash;&gt;-->
+        <!--<maxFileSize>100MB</maxFileSize>-->
+        <!--<maxHistory>60</maxHistory>-->
+        <!--<totalSizeCap>20GB</totalSizeCap>-->
+        <!--</rollingPolicy>-->
+
+        <!-- FixedWindowRollingPolicy -->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+        <!--<fileNamePattern>tests.%i.log.zip</fileNamePattern>-->
+        <!--<minIndex>1</minIndex>-->
+        <!--<maxIndex>3</maxIndex>-->
+        <!--</rollingPolicy>-->
+
         <encoder>
             <pattern>%date %contextName %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
         </encoder>
